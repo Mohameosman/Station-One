@@ -1,14 +1,95 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#111827" />
-  <title>Station One | ANC Logistics</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b1220" />
+  <title>Station One | Operations Intelligence Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="app"></div>
+  <div id="toast" class="toast"></div>
+
+  <section id="loginScreen" class="login-screen">
+    <div class="login-brand">
+      <div class="brand-mark large">S1</div>
+      <div>
+        <h1>Station One</h1>
+        <p>Operations Intelligence Platform</p>
+      </div>
+    </div>
+    <div class="login-card">
+      <div class="login-head">
+        <span class="eyebrow">ANC Logistics Solutions</span>
+        <h2>تسجيل الدخول</h2>
+        <p>أدخل بياناتك للوصول إلى غرفة العمليات</p>
+      </div>
+      <label>البريد الإلكتروني</label>
+      <div class="input-icon"><i data-lucide="mail"></i><input id="loginEmail" type="email" value="operations@anc.com" /></div>
+      <label>كلمة المرور</label>
+      <div class="input-icon"><i data-lucide="lock"></i><input id="loginPassword" type="password" value="123456" /></div>
+      <div class="login-meta"><label class="check"><input type="checkbox" checked /> تذكرني</label><a href="#">نسيت كلمة المرور؟</a></div>
+      <button id="loginBtn" class="btn primary wide"><i data-lucide="log-in"></i> دخول آمن</button>
+      <div class="demo-note"><i data-lucide="shield-check"></i><span>نسخة العرض الأولية V2 — بيانات افتراضية آمنة</span></div>
+    </div>
+    <div class="login-visual">
+      <div class="visual-grid"></div>
+      <div class="visual-copy">
+        <span class="eyebrow">Real-time Logistics Intelligence</span>
+        <h3>قرار تشغيل أسرع.<br>رحلات عودة أكثر ربحية.</h3>
+        <p>منصة موحدة لمراقبة الحجوزات، الأسطول، المطابقة الذكية، والأداء التنفيذي.</p>
+      </div>
+      <div class="floating-card c1"><i data-lucide="truck"></i><div><strong>89%</strong><span>استغلال الأسطول</span></div></div>
+      <div class="floating-card c2"><i data-lucide="route"></i><div><strong>24</strong><span>رحلة عودة مرشحة</span></div></div>
+      <div class="floating-card c3"><i data-lucide="circle-dollar-sign"></i><div><strong>18.4%</strong><span>تحسن الهامش</span></div></div>
+    </div>
+  </section>
+
+  <div id="app" class="app hidden">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">S1</div><div><strong>Station One</strong><span>ANC Logistics</span></div></div>
+      <nav id="mainNav">
+        <button class="nav-item active" data-page="dashboard"><i data-lucide="layout-dashboard"></i><span>لوحة التحكم</span></button>
+        <button class="nav-item" data-page="operations"><i data-lucide="radar"></i><span>غرفة العمليات</span><em>LIVE</em></button>
+        <button class="nav-item" data-page="bookings"><i data-lucide="clipboard-list"></i><span>الحجوزات</span><b>12</b></button>
+        <button class="nav-item" data-page="matching"><i data-lucide="sparkles"></i><span>المطابقة الذكية</span></button>
+        <button class="nav-item" data-page="trips"><i data-lucide="route"></i><span>الرحلات</span></button>
+        <button class="nav-item" data-page="fleet"><i data-lucide="truck"></i><span>الأسطول</span></button>
+        <button class="nav-item" data-page="drivers"><i data-lucide="users"></i><span>السائقون</span></button>
+        <button class="nav-item" data-page="carriers"><i data-lucide="warehouse"></i><span>الناقلون</span></button>
+        <button class="nav-item" data-page="customers"><i data-lucide="building-2"></i><span>العملاء</span></button>
+        <button class="nav-item" data-page="reports"><i data-lucide="chart-no-axes-combined"></i><span>التقارير</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <button class="nav-item" data-page="settings"><i data-lucide="settings"></i><span>الإعدادات</span></button>
+        <div class="system-status"><span class="pulse"></span><div><strong>جميع الأنظمة تعمل</strong><small>آخر تحديث الآن</small></div></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-title"><button id="menuBtn" class="icon-btn mobile"><i data-lucide="menu"></i></button><div><h2 id="pageTitle">لوحة التحكم التنفيذية</h2><p id="pageSubtitle">نظرة شاملة على أداء العمليات اليوم</p></div></div>
+        <div class="topbar-actions">
+          <div class="global-search"><i data-lucide="search"></i><input id="globalSearch" placeholder="ابحث عن رحلة، شاحنة، سائق..." /></div>
+          <button class="icon-btn badge"><i data-lucide="bell"></i><span>4</span></button>
+          <button class="profile"><div class="avatar">م ع</div><div><strong>محمد عثمان</strong><span>الرئيس التنفيذي</span></div><i data-lucide="chevron-down"></i></button>
+        </div>
+      </header>
+      <div id="pageContainer" class="page-container"></div>
+    </main>
+  </div>
+
+  <div id="drawerBackdrop" class="drawer-backdrop hidden"></div>
+  <aside id="detailsDrawer" class="details-drawer">
+    <div class="drawer-head"><div><span class="eyebrow">تفاصيل العملية</span><h3 id="drawerTitle">—</h3></div><button id="closeDrawer" class="icon-btn"><i data-lucide="x"></i></button></div>
+    <div id="drawerContent"></div>
+  </aside>
+
   <script src="app.js"></script>
 </body>
 </html>
