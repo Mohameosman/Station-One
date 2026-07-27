@@ -1,63 +1,252 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#ffffff" />
-  <title>Station One — Control Dashboard</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Station One — Operations Intelligence Platform</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main class="viewport">
-    <section class="dashboard-stage" id="dashboardStage" aria-label="Station One Operations Dashboard">
-      <img class="dashboard-image" src="dashboard-reference.png" alt="Station One logistics dashboard" />
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="anc-brand">
+      <img src="anc-logo.png" alt="ANC Logistics Solutions">
+    </div>
 
-      <!-- Functional transparent interaction layer aligned to the approved design -->
-      <button class="hotspot nav dashboard" data-action="dashboard" aria-label="لوحة التحكم"></button>
-      <button class="hotspot nav operations" data-action="operations" aria-label="غرفة العمليات"></button>
-      <button class="hotspot nav bookings" data-action="bookings" aria-label="الحجوزات"></button>
-      <button class="hotspot nav trips" data-action="trips" aria-label="الرحلات"></button>
-      <button class="hotspot nav fleet" data-action="fleet" aria-label="الأسطول"></button>
-      <button class="hotspot nav drivers" data-action="drivers" aria-label="السائقون"></button>
-      <button class="hotspot nav carriers" data-action="carriers" aria-label="الناقلون"></button>
-      <button class="hotspot nav customers" data-action="customers" aria-label="العملاء"></button>
-      <button class="hotspot nav docs" data-action="docs" aria-label="المستندات"></button>
-      <button class="hotspot nav reports" data-action="reports" aria-label="التقارير والتحليلات"></button>
-      <button class="hotspot nav alerts-nav" data-action="alerts" aria-label="التنبيهات"></button>
-      <button class="hotspot nav settings" data-action="settings" aria-label="الإعدادات"></button>
+    <nav class="side-nav">
+      <button class="nav-btn active" data-section="dashboard"><span>⌂</span>لوحة التحكم</button>
+      <button class="nav-btn" data-section="operations"><span>◉</span>غرفة العمليات</button>
+      <button class="nav-btn" data-section="bookings"><span>▣</span>الحجوزات</button>
+      <button class="nav-btn" data-section="trips"><span>⇄</span>الرحلات</button>
+      <button class="nav-btn" data-section="fleet"><span>▰</span>الأسطول</button>
+      <button class="nav-btn" data-section="drivers"><span>♙</span>السائقون</button>
+      <button class="nav-btn" data-section="carriers"><span>◎</span>الناقلون</button>
+      <button class="nav-btn" data-section="customers"><span>♧</span>العملاء</button>
+      <button class="nav-btn" data-section="documents"><span>▤</span>المستندات</button>
+      <button class="nav-btn" data-section="reports"><span>▥</span>التقارير والتحليلات</button>
+      <button class="nav-btn" data-section="alerts"><span>♢</span>التنبيهات <b class="nav-count">5</b></button>
+      <button class="nav-btn" data-section="settings"><span>⚙</span>الإعدادات</button>
+    </nav>
 
-      <input class="search-hotspot" id="searchInput" aria-label="البحث" placeholder="" />
-      <button class="hotspot notification" data-action="notifications" aria-label="الإشعارات"></button>
-      <button class="hotspot language" data-action="language" aria-label="اللغة"></button>
-      <button class="hotspot profile" data-action="profile" aria-label="الملف الشخصي"></button>
+    <button class="support">
+      <span class="support-icon">◌</span>
+      <span><b>الدعم الفني</b><small>متصل الآن</small></span>
+    </button>
+  </aside>
 
-      <button class="hotspot map-expand" data-action="map-expand" aria-label="تكبير الخريطة"></button>
-      <button class="hotspot map-plus" data-action="map-plus" aria-label="تكبير"></button>
-      <button class="hotspot map-minus" data-action="map-minus" aria-label="تصغير"></button>
-      <button class="hotspot map-center" data-action="map-center" aria-label="توسيط الخريطة"></button>
+  <main class="main">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <div class="s1">S<span>1</span></div>
+        <div class="divider"></div>
+        <div>
+          <h1>STATION ONE</h1>
+          <p>OPERATIONS INTELLIGENCE PLATFORM</p>
+        </div>
+      </div>
 
-      <button class="hotspot assign" data-action="assign" aria-label="تعيين الآن"></button>
-      <button class="hotspot activity-all" data-action="activity-all" aria-label="عرض كل النشاط"></button>
-      <button class="hotspot trips-all" data-action="trips-all" aria-label="عرض جميع الرحلات"></button>
+      <label class="search">
+        <input id="globalSearch" placeholder="ابحث في الرحلات، الشاحنات، العملاء..." />
+        <span>⌕</span>
+      </label>
 
-      <button class="hotspot track t1" data-trip="TRP-10023" aria-label="تتبع الرحلة TRP-10023"></button>
-      <button class="hotspot track t2" data-trip="TRP-10024" aria-label="تتبع الرحلة TRP-10024"></button>
-      <button class="hotspot track t3" data-trip="TRP-10025" aria-label="تتبع الرحلة TRP-10025"></button>
-      <button class="hotspot track t4" data-trip="TRP-10022" aria-label="تتبع الرحلة TRP-10022"></button>
+      <div class="header-actions">
+        <button class="icon-btn" id="notifyBtn">♢<i>5</i></button>
+        <button class="icon-btn" id="langBtn">◎</button>
+        <div class="profile">
+          <div class="avatar">ع</div>
+          <div><b>أبو عثمان</b><small>مدير العمليات</small></div>
+          <span>⌄</span>
+        </div>
+      </div>
+
+      <div class="datetime">
+        <span>▣ السبت، 28 يونيو 2025</span>
+        <span>◷ 09:45 AM</span>
+      </div>
+    </header>
+
+    <section class="page active" id="dashboard">
+      <div class="kpi-row" id="kpiRow"></div>
+
+      <div class="main-grid">
+        <section class="card map-card">
+          <div class="card-head map-head">
+            <div>
+              <h2>شبكة الرحلات المباشرة</h2>
+              <p>خريطة الرحلات داخل المملكة العربية السعودية</p>
+            </div>
+            <div class="map-metrics">
+              <div><span>رحلات في الموعد</span><b class="green-txt">24</b></div>
+              <div><span>تحتاج متابعة</span><b class="orange-txt">11</b></div>
+              <div><span>رحلات عودة متاحة</span><b class="cyan-txt">10</b></div>
+              <button id="showAllMap">جميع الرحلات ⤢</button>
+            </div>
+          </div>
+
+          <div class="map-shell">
+            <svg id="ksaMap" viewBox="0 0 980 500" class="ksa-map" role="img" aria-label="خريطة المملكة العربية السعودية">
+              <defs>
+                <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#dceeff"/>
+                  <stop offset="100%" stop-color="#f6fbff"/>
+                </linearGradient>
+                <linearGradient id="land" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#fffdf8"/>
+                  <stop offset="100%" stop-color="#eef3f4"/>
+                </linearGradient>
+                <filter id="shadow">
+                  <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#13395a" flood-opacity=".16"/>
+                </filter>
+                <marker id="arrowG" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#2eae65"/></marker>
+                <marker id="arrowO" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#f39a19"/></marker>
+                <marker id="arrowC" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#19a9ba"/></marker>
+              </defs>
+
+              <rect width="980" height="500" fill="url(#sea)"/>
+              <path class="saudi" filter="url(#shadow)"
+                d="M145 92 L216 66 L281 71 L338 44 L406 54 L458 87 L523 94 L569 121 L628 132 L682 168 L727 207 L774 230 L807 269 L815 315 L790 355 L752 385 L702 414 L645 427 L596 452 L538 453 L490 439 L447 446 L398 427 L367 398 L325 386 L294 352 L260 334 L232 299 L207 276 L186 239 L158 219 L145 182 L120 158 L126 124 Z"/>
+
+              <g id="routes">
+                <path class="route green-route" data-route="جدة → الرياض" d="M286 358 Q450 252 611 235" marker-end="url(#arrowG)"/>
+                <path class="route green-route" data-route="المدينة → الرياض" d="M260 294 Q442 316 611 235" marker-end="url(#arrowG)"/>
+                <path class="route green-route" data-route="تبوك → الرياض" d="M362 145 Q458 182 611 235" marker-end="url(#arrowG)"/>
+                <path class="route green-route" data-route="حائل → الرياض" d="M454 164 Q521 204 611 235" marker-end="url(#arrowG)"/>
+                <path class="route orange-route" data-route="جدة → الرياض متابعة" d="M286 358 Q482 392 611 235" marker-end="url(#arrowO)"/>
+                <path class="route orange-route" data-route="أبها → الرياض متابعة" d="M501 410 Q568 331 611 235" marker-end="url(#arrowO)"/>
+                <path class="route cyan-route" data-route="الرياض → الدمام عودة" d="M611 235 Q689 216 756 210" marker-end="url(#arrowC)"/>
+                <path class="route cyan-route" data-route="جازان → الدمام عودة" d="M481 444 Q650 352 756 210" marker-end="url(#arrowC)"/>
+              </g>
+
+              <g class="city" data-city="جدة" transform="translate(286 358)"><circle r="9"/><circle class="pulse" r="18"/><text x="-7" y="-18">جدة</text></g>
+              <g class="city" data-city="مكة المكرمة" transform="translate(318 370)"><circle r="6"/><text x="10" y="18">مكة المكرمة</text></g>
+              <g class="city" data-city="المدينة المنورة" transform="translate(260 294)"><circle r="8"/><text x="-10" y="-18">المدينة المنورة</text></g>
+              <g class="city" data-city="تبوك" transform="translate(362 145)"><circle r="7"/><text x="-4" y="-17">تبوك</text></g>
+              <g class="city" data-city="حائل" transform="translate(454 164)"><circle r="7"/><text x="-4" y="-17">حائل</text></g>
+              <g class="city" data-city="القصيم" transform="translate(515 204)"><circle r="7"/><text x="-4" y="-17">القصيم</text></g>
+              <g class="city major" data-city="الرياض" transform="translate(611 235)"><circle r="10"/><circle class="pulse" r="20"/><text x="15" y="5">الرياض</text></g>
+              <g class="city" data-city="الدمام" transform="translate(756 210)"><circle r="9"/><text x="12" y="-8">الدمام</text></g>
+              <g class="city" data-city="أبها" transform="translate(501 410)"><circle r="7"/><text x="-4" y="-17">أبها</text></g>
+              <g class="city" data-city="جازان" transform="translate(481 444)"><circle r="7"/><text x="-4" y="24">جازان</text></g>
+
+              <g class="truck" transform="translate(407 301)"><rect x="-12" y="-7" width="20" height="12" rx="3"/><circle cx="-7" cy="7" r="3"/><circle cx="6" cy="7" r="3"/></g>
+              <g class="truck" transform="translate(458 333)"><rect x="-12" y="-7" width="20" height="12" rx="3"/><circle cx="-7" cy="7" r="3"/><circle cx="6" cy="7" r="3"/></g>
+              <g class="truck cyan-truck" transform="translate(680 229)"><rect x="-12" y="-7" width="20" height="12" rx="3"/><circle cx="-7" cy="7" r="3"/><circle cx="6" cy="7" r="3"/></g>
+            </svg>
+
+            <div class="legend">
+              <button data-filter="green"><i class="lg green"></i>في الموعد</button>
+              <button data-filter="orange"><i class="lg orange"></i>تحتاج متابعة</button>
+              <button data-filter="cyan"><i class="lg cyan"></i>رحلة عودة متاحة</button>
+            </div>
+
+            <div class="map-tools">
+              <button id="zoomIn">＋</button>
+              <button id="zoomOut">−</button>
+              <button id="resetMap">◎</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="card ai-card">
+          <div class="card-head compact">
+            <div>
+              <h2><span class="ai-badge">AI</span> المطابقة الذكية</h2>
+              <p>توصية النظام لأفضل خيار متاح</p>
+            </div>
+          </div>
+
+          <div class="ai-row">
+            <span class="ai-icon">♙</span>
+            <div><small>الناقل المقترح</small><b>ANC للنقل البري</b></div>
+            <div class="confidence"><strong>96%</strong><span>نسبة الثقة</span></div>
+          </div>
+          <div class="ai-row">
+            <span class="ai-icon">●</span>
+            <div><small>السائق المقترح</small><b>أحمد سالم</b></div>
+            <div class="rating"><strong>4.8</strong><span>★★★★★</span></div>
+          </div>
+          <div class="ai-row">
+            <span class="ai-icon">▰</span>
+            <div><small>الشاحنة المقترحة</small><b>T-205</b></div>
+            <span class="available">● متاحة الآن</span>
+          </div>
+          <div class="ai-row">
+            <span class="ai-icon">↺</span>
+            <div><small>رحلة العودة المتاحة</small><b>الرياض ← جدة</b></div>
+            <strong>95%</strong>
+          </div>
+          <div class="profit">
+            <span>الربح المتوقع</span>
+            <strong>1,820 <small>SAR</small></strong>
+          </div>
+          <button class="assign-btn" id="assignBtn">تعيين الآن ◉</button>
+        </section>
+
+        <section class="card activity-card">
+          <div class="card-head compact">
+            <div><h2>النشاط المباشر</h2><p class="live">● مباشر</p></div>
+          </div>
+          <div class="timeline" id="timeline"></div>
+          <button class="outline-btn" id="allActivity">عرض كل النشاط</button>
+        </section>
+      </div>
+
+      <div class="bottom-grid">
+        <section class="card trips-card">
+          <div class="card-head compact">
+            <div><h2>الرحلات النشطة اليوم</h2></div>
+            <button class="soft-btn" id="allTrips">عرض جميع الرحلات</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>رقم الرحلة</th><th>من</th><th>إلى</th><th>نوع الشحنة</th><th>الناقل</th><th>السائق</th><th>وقت التحميل</th><th>الحالة</th><th>التقدم</th><th>الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="tripTable"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card fleet-card">
+          <div class="card-head compact"><div><h2>الأسطول المتاح الآن</h2></div></div>
+          <div class="fleet-wrap">
+            <div class="fleet-stats">
+              <strong>58</strong><span>إجمالي الشاحنات</span>
+              <small>45 في الخدمة</small>
+              <small>18 متاحة الآن</small>
+              <small class="danger">4 تحت الصيانة</small>
+            </div>
+            <div class="ring"><div><strong>91%</strong><span>نسبة الاستغلال</span></div></div>
+          </div>
+          <div class="fleet-foot">↑ 8% مقارنة مع أمس</div>
+        </section>
+      </div>
+    </section>
+
+    <section class="page" id="genericPage">
+      <div class="generic-card">
+        <h2 id="genericTitle">صفحة النظام</h2>
+        <p id="genericDescription"></p>
+        <div class="generic-grid" id="genericGrid"></div>
+      </div>
     </section>
   </main>
+</div>
 
-  <div id="toast" class="toast" role="status"></div>
+<div id="toast" class="toast"></div>
 
-  <dialog id="modal" class="modal">
-    <button class="modal-close" id="modalClose">×</button>
-    <h2 id="modalTitle">Station One</h2>
-    <p id="modalBody"></p>
-  </dialog>
+<dialog id="dialog" class="dialog">
+  <button id="dialogClose" class="dialog-close">×</button>
+  <h3 id="dialogTitle"></h3>
+  <div id="dialogBody"></div>
+</dialog>
 
-  <script src="app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
