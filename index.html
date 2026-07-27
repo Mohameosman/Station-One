@@ -1,252 +1,45 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Station One — Operations Intelligence Platform</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-<div class="app">
-  <aside class="sidebar" id="sidebar">
-    <div class="anc-brand">
-      <img src="anc-logo.png" alt="ANC Logistics Solutions">
-    </div>
-
-    <nav class="side-nav">
-      <button class="nav-btn active" data-section="dashboard"><span>⌂</span>لوحة التحكم</button>
-      <button class="nav-btn" data-section="operations"><span>◉</span>غرفة العمليات</button>
-      <button class="nav-btn" data-section="bookings"><span>▣</span>الحجوزات</button>
-      <button class="nav-btn" data-section="trips"><span>⇄</span>الرحلات</button>
-      <button class="nav-btn" data-section="fleet"><span>▰</span>الأسطول</button>
-      <button class="nav-btn" data-section="drivers"><span>♙</span>السائقون</button>
-      <button class="nav-btn" data-section="carriers"><span>◎</span>الناقلون</button>
-      <button class="nav-btn" data-section="customers"><span>♧</span>العملاء</button>
-      <button class="nav-btn" data-section="documents"><span>▤</span>المستندات</button>
-      <button class="nav-btn" data-section="reports"><span>▥</span>التقارير والتحليلات</button>
-      <button class="nav-btn" data-section="alerts"><span>♢</span>التنبيهات <b class="nav-count">5</b></button>
-      <button class="nav-btn" data-section="settings"><span>⚙</span>الإعدادات</button>
-    </nav>
-
-    <button class="support">
-      <span class="support-icon">◌</span>
-      <span><b>الدعم الفني</b><small>متصل الآن</small></span>
-    </button>
-  </aside>
-
-  <main class="main">
-    <header class="topbar">
-      <div class="brand-lockup">
-        <div class="s1">S<span>1</span></div>
-        <div class="divider"></div>
-        <div>
-          <h1>STATION ONE</h1>
-          <p>OPERATIONS INTELLIGENCE PLATFORM</p>
-        </div>
-      </div>
-
-      <label class="search">
-        <input id="globalSearch" placeholder="ابحث في الرحلات، الشاحنات، العملاء..." />
-        <span>⌕</span>
-      </label>
-
-      <div class="header-actions">
-        <button class="icon-btn" id="notifyBtn">♢<i>5</i></button>
-        <button class="icon-btn" id="langBtn">◎</button>
-        <div class="profile">
-          <div class="avatar">ع</div>
-          <div><b>أبو عثمان</b><small>مدير العمليات</small></div>
-          <span>⌄</span>
-        </div>
-      </div>
-
-      <div class="datetime">
-        <span>▣ السبت، 28 يونيو 2025</span>
-        <span>◷ 09:45 AM</span>
-      </div>
-    </header>
-
-    <section class="page active" id="dashboard">
-      <div class="kpi-row" id="kpiRow"></div>
-
-      <div class="main-grid">
-        <section class="card map-card">
-          <div class="card-head map-head">
-            <div>
-              <h2>شبكة الرحلات المباشرة</h2>
-              <p>خريطة الرحلات داخل المملكة العربية السعودية</p>
-            </div>
-            <div class="map-metrics">
-              <div><span>رحلات في الموعد</span><b class="green-txt">24</b></div>
-              <div><span>تحتاج متابعة</span><b class="orange-txt">11</b></div>
-              <div><span>رحلات عودة متاحة</span><b class="cyan-txt">10</b></div>
-              <button id="showAllMap">جميع الرحلات ⤢</button>
-            </div>
-          </div>
-
-          <div class="map-shell">
-            <svg id="ksaMap" viewBox="0 0 980 500" class="ksa-map" role="img" aria-label="خريطة المملكة العربية السعودية">
-              <defs>
-                <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#dceeff"/>
-                  <stop offset="100%" stop-color="#f6fbff"/>
-                </linearGradient>
-                <linearGradient id="land" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#fffdf8"/>
-                  <stop offset="100%" stop-color="#eef3f4"/>
-                </linearGradient>
-                <filter id="shadow">
-                  <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#13395a" flood-opacity=".16"/>
-                </filter>
-                <marker id="arrowG" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#2eae65"/></marker>
-                <marker id="arrowO" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#f39a19"/></marker>
-                <marker id="arrowC" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#19a9ba"/></marker>
-              </defs>
-
-              <rect width="980" height="500" fill="url(#sea)"/>
-              <path class="saudi" filter="url(#shadow)"
-                d="M145 92 L216 66 L281 71 L338 44 L406 54 L458 87 L523 94 L569 121 L628 132 L682 168 L727 207 L774 230 L807 269 L815 315 L790 355 L752 385 L702 414 L645 427 L596 452 L538 453 L490 439 L447 446 L398 427 L367 398 L325 386 L294 352 L260 334 L232 299 L207 276 L186 239 L158 219 L145 182 L120 158 L126 124 Z"/>
-
-              <g id="routes">
-                <path class="route green-route" data-route="جدة → الرياض" d="M286 358 Q450 252 611 235" marker-end="url(#arrowG)"/>
-                <path class="route green-route" data-route="المدينة → الرياض" d="M260 294 Q442 316 611 235" marker-end="url(#arrowG)"/>
-                <path class="route green-route" data-route="تبوك → الرياض" d="M362 145 Q458 182 611 235" marker-end="url(#arrowG)"/>
-                <path class="route green-route" data-route="حائل → الرياض" d="M454 164 Q521 204 611 235" marker-end="url(#arrowG)"/>
-                <path class="route orange-route" data-route="جدة → الرياض متابعة" d="M286 358 Q482 392 611 235" marker-end="url(#arrowO)"/>
-                <path class="route orange-route" data-route="أبها → الرياض متابعة" d="M501 410 Q568 331 611 235" marker-end="url(#arrowO)"/>
-                <path class="route cyan-route" data-route="الرياض → الدمام عودة" d="M611 235 Q689 216 756 210" marker-end="url(#arrowC)"/>
-                <path class="route cyan-route" data-route="جازان → الدمام عودة" d="M481 444 Q650 352 756 210" marker-end="url(#arrowC)"/>
-              </g>
-
-              <g class="city" data-city="جدة" transform="translate(286 358)"><circle r="9"/><circle class="pulse" r="18"/><text x="-7" y="-18">جدة</text></g>
-              <g class="city" data-city="مكة المكرمة" transform="translate(318 370)"><circle r="6"/><text x="10" y="18">مكة المكرمة</text></g>
-              <g class="city" data-city="المدينة المنورة" transform="translate(260 294)"><circle r="8"/><text x="-10" y="-18">المدينة المنورة</text></g>
-              <g class="city" data-city="تبوك" transform="translate(362 145)"><circle r="7"/><text x="-4" y="-17">تبوك</text></g>
-              <g class="city" data-city="حائل" transform="translate(454 164)"><circle r="7"/><text x="-4" y="-17">حائل</text></g>
-              <g class="city" data-city="القصيم" transform="translate(515 204)"><circle r="7"/><text x="-4" y="-17">القصيم</text></g>
-              <g class="city major" data-city="الرياض" transform="translate(611 235)"><circle r="10"/><circle class="pulse" r="20"/><text x="15" y="5">الرياض</text></g>
-              <g class="city" data-city="الدمام" transform="translate(756 210)"><circle r="9"/><text x="12" y="-8">الدمام</text></g>
-              <g class="city" data-city="أبها" transform="translate(501 410)"><circle r="7"/><text x="-4" y="-17">أبها</text></g>
-              <g class="city" data-city="جازان" transform="translate(481 444)"><circle r="7"/><text x="-4" y="24">جازان</text></g>
-
-              <g class="truck" transform="translate(407 301)"><rect x="-12" y="-7" width="20" height="12" rx="3"/><circle cx="-7" cy="7" r="3"/><circle cx="6" cy="7" r="3"/></g>
-              <g class="truck" transform="translate(458 333)"><rect x="-12" y="-7" width="20" height="12" rx="3"/><circle cx="-7" cy="7" r="3"/><circle cx="6" cy="7" r="3"/></g>
-              <g class="truck cyan-truck" transform="translate(680 229)"><rect x="-12" y="-7" width="20" height="12" rx="3"/><circle cx="-7" cy="7" r="3"/><circle cx="6" cy="7" r="3"/></g>
-            </svg>
-
-            <div class="legend">
-              <button data-filter="green"><i class="lg green"></i>في الموعد</button>
-              <button data-filter="orange"><i class="lg orange"></i>تحتاج متابعة</button>
-              <button data-filter="cyan"><i class="lg cyan"></i>رحلة عودة متاحة</button>
-            </div>
-
-            <div class="map-tools">
-              <button id="zoomIn">＋</button>
-              <button id="zoomOut">−</button>
-              <button id="resetMap">◎</button>
-            </div>
-          </div>
-        </section>
-
-        <section class="card ai-card">
-          <div class="card-head compact">
-            <div>
-              <h2><span class="ai-badge">AI</span> المطابقة الذكية</h2>
-              <p>توصية النظام لأفضل خيار متاح</p>
-            </div>
-          </div>
-
-          <div class="ai-row">
-            <span class="ai-icon">♙</span>
-            <div><small>الناقل المقترح</small><b>ANC للنقل البري</b></div>
-            <div class="confidence"><strong>96%</strong><span>نسبة الثقة</span></div>
-          </div>
-          <div class="ai-row">
-            <span class="ai-icon">●</span>
-            <div><small>السائق المقترح</small><b>أحمد سالم</b></div>
-            <div class="rating"><strong>4.8</strong><span>★★★★★</span></div>
-          </div>
-          <div class="ai-row">
-            <span class="ai-icon">▰</span>
-            <div><small>الشاحنة المقترحة</small><b>T-205</b></div>
-            <span class="available">● متاحة الآن</span>
-          </div>
-          <div class="ai-row">
-            <span class="ai-icon">↺</span>
-            <div><small>رحلة العودة المتاحة</small><b>الرياض ← جدة</b></div>
-            <strong>95%</strong>
-          </div>
-          <div class="profit">
-            <span>الربح المتوقع</span>
-            <strong>1,820 <small>SAR</small></strong>
-          </div>
-          <button class="assign-btn" id="assignBtn">تعيين الآن ◉</button>
-        </section>
-
-        <section class="card activity-card">
-          <div class="card-head compact">
-            <div><h2>النشاط المباشر</h2><p class="live">● مباشر</p></div>
-          </div>
-          <div class="timeline" id="timeline"></div>
-          <button class="outline-btn" id="allActivity">عرض كل النشاط</button>
-        </section>
-      </div>
-
-      <div class="bottom-grid">
-        <section class="card trips-card">
-          <div class="card-head compact">
-            <div><h2>الرحلات النشطة اليوم</h2></div>
-            <button class="soft-btn" id="allTrips">عرض جميع الرحلات</button>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>رقم الرحلة</th><th>من</th><th>إلى</th><th>نوع الشحنة</th><th>الناقل</th><th>السائق</th><th>وقت التحميل</th><th>الحالة</th><th>التقدم</th><th>الإجراءات</th>
-                </tr>
-              </thead>
-              <tbody id="tripTable"></tbody>
-            </table>
-          </div>
-        </section>
-
-        <section class="card fleet-card">
-          <div class="card-head compact"><div><h2>الأسطول المتاح الآن</h2></div></div>
-          <div class="fleet-wrap">
-            <div class="fleet-stats">
-              <strong>58</strong><span>إجمالي الشاحنات</span>
-              <small>45 في الخدمة</small>
-              <small>18 متاحة الآن</small>
-              <small class="danger">4 تحت الصيانة</small>
-            </div>
-            <div class="ring"><div><strong>91%</strong><span>نسبة الاستغلال</span></div></div>
-          </div>
-          <div class="fleet-foot">↑ 8% مقارنة مع أمس</div>
-        </section>
-      </div>
-    </section>
-
-    <section class="page" id="genericPage">
-      <div class="generic-card">
-        <h2 id="genericTitle">صفحة النظام</h2>
-        <p id="genericDescription"></p>
-        <div class="generic-grid" id="genericGrid"></div>
-      </div>
-    </section>
-  </main>
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>لوحة التحكم</title><link rel="stylesheet" href="styles.css"></head><body><div class="app"><aside class="sidebar"><div class="logo"><img src="assets/anc-logo.png"></div><nav class="nav"><a href="index.html" class="active"><span class="ico">⌂</span>لوحة التحكم</a>
+<a href="operations.html" class=""><span class="ico">◉</span>غرفة العمليات</a>
+<a href="bookings.html" class=""><span class="ico">▣</span>الحجوزات</a>
+<a href="trips.html" class=""><span class="ico">⇄</span>الرحلات</a>
+<a href="fleet.html" class=""><span class="ico">▰</span>الأسطول</a>
+<a href="drivers.html" class=""><span class="ico">♙</span>السائقون</a>
+<a href="carriers.html" class=""><span class="ico">◎</span>الناقلون</a>
+<a href="customers.html" class=""><span class="ico">♧</span>العملاء</a>
+<a href="documents.html" class=""><span class="ico">▤</span>المستندات</a>
+<a href="reports.html" class=""><span class="ico">▥</span>التقارير والتحليلات</a>
+<a href="alerts.html" class=""><span class="ico">♢</span>التنبيهات</a>
+<a href="settings.html" class=""><span class="ico">⚙</span>الإعدادات</a></nav><div class="support"><span>◌</span><div><b>الدعم الفني</b><small>متصل الآن</small></div></div></aside><main class="main"><header class="topbar"><div class="brand"><div class="s1">S<span>1</span></div><div class="vline"></div><div><h1>STATION ONE</h1><p>OPERATIONS INTELLIGENCE PLATFORM</p></div></div><label class="search"><input id="globalSearch" placeholder="ابحث في النظام..."><span>⌕</span></label><div class="actions"><button class="round" data-toast="لديك 5 تنبيهات">♢</button><button class="round" data-toast="اللغة العربية">◎</button><div class="profile"><div class="avatar">ع</div><div><b>أبو عثمان</b><small>مدير العمليات</small></div></div></div><div class="date">السبت، 28 يونيو 2025 — 09:45 AM</div></header><section class="content">
+<div class="kpis">
+<div class="kpi"><div class="icon" style="background:#0a4e99">▰</div><span class="label">إجمالي الرحلات اليوم</span><strong>42</strong><em>↑ 12%</em><small>مقارنة مع أمس</small></div><div class="kpi"><div class="icon" style="background:#2eae65">✓</div><span class="label">الرحلات المكتملة</span><strong>35</strong><em>↑ 83%</em><small>مقارنة مع أمس</small></div><div class="kpi"><div class="icon" style="background:#f39a19">▣</div><span class="label">الرحلات قيد التنفيذ</span><strong>7</strong><em>↑ 17%</em><small>مقارنة مع أمس</small></div><div class="kpi"><div class="icon" style="background:#19a9ba">$</div><span class="label">إجمالي الإيرادات</span><strong>1,245,000</strong><em>↑ 15%</em><small>مقارنة مع أمس</small></div><div class="kpi"><div class="icon" style="background:#7444c7">↗</div><span class="label">هامش الربح</span><strong>18.6%</strong><em>↑ 2.3%</em><small>مقارنة مع أمس</small></div><div class="kpi"><div class="icon" style="background:#19a9ba">◔</div><span class="label">نسبة الاستغلال</span><strong>91%</strong><em>↑ 8%</em><small>مقارنة مع أمس</small></div><div class="kpi"><div class="icon" style="background:#d93b43">◷</div><span class="label">الرحلات المتأخرة</span><strong>3</strong><em>↓ -25%</em><small>مقارنة مع أمس</small></div><div class="kpi"><div class="icon" style="background:#0a4e99">◴</div><span class="label">متوسط وقت التسليم</span><strong>6.4</strong><em>↓ -8%</em><small>مقارنة مع أمس</small></div>
 </div>
-
-<div id="toast" class="toast"></div>
-
-<dialog id="dialog" class="dialog">
-  <button id="dialogClose" class="dialog-close">×</button>
-  <h3 id="dialogTitle"></h3>
-  <div id="dialogBody"></div>
-</dialog>
-
-<script src="app.js"></script>
-</body>
-</html>
+<div class="grid">
+<section class="card">
+<div class="head"><div><h2>شبكة الرحلات المباشرة</h2><p>خريطة المملكة العربية السعودية</p></div><button class="btn" data-toast="تم تحديث الخريطة">تحديث</button></div>
+<div class="map">
+<svg viewBox="0 0 980 500">
+<path class="saudi" d="M145 92 L216 66 L281 71 L338 44 L406 54 L458 87 L523 94 L569 121 L628 132 L682 168 L727 207 L774 230 L807 269 L815 315 L790 355 L752 385 L702 414 L645 427 L596 452 L538 453 L490 439 L447 446 L398 427 L367 398 L325 386 L294 352 L260 334 L232 299 L207 276 L186 239 L158 219 L145 182 L120 158 L126 124 Z"/>
+<path class="route g" d="M286 358 Q450 252 611 235"/><path class="route g" d="M260 294 Q442 316 611 235"/><path class="route g" d="M362 145 Q458 182 611 235"/><path class="route o" d="M286 358 Q482 392 611 235"/><path class="route c" d="M611 235 Q689 216 756 210"/>
+<g class="city" transform="translate(286 358)"><circle r="9"/><text x="-8" y="-18">جدة</text></g>
+<g class="city" transform="translate(260 294)"><circle r="8"/><text x="-20" y="-18">المدينة</text></g>
+<g class="city" transform="translate(362 145)"><circle r="7"/><text x="-4" y="-17">تبوك</text></g>
+<g class="city" transform="translate(454 164)"><circle r="7"/><text x="-4" y="-17">حائل</text></g>
+<g class="city" transform="translate(611 235)"><circle r="10"/><text x="15" y="5">الرياض</text></g>
+<g class="city" transform="translate(756 210)"><circle r="9"/><text x="12" y="-8">الدمام</text></g>
+</svg>
+<div class="legend"><span>— في الموعد</span><span>--- تحتاج متابعة</span><span>--- رحلة عودة</span></div>
+</div>
+</section>
+<section class="card"><div class="head"><div><h2>المطابقة الذكية AI</h2><p>أفضل خيار متاح</p></div></div>
+<div class="airow"><span>♙</span><div><small>الناقل</small><b>ANC للنقل البري</b></div><b>96%</b></div>
+<div class="airow"><span>●</span><div><small>السائق</small><b>أحمد سالم</b></div><b>4.8</b></div>
+<div class="airow"><span>▰</span><div><small>الشاحنة</small><b>T-205</b></div><b>متاحة</b></div>
+<div class="airow"><span>↺</span><div><small>رحلة العودة</small><b>الرياض ← جدة</b></div><b>95%</b></div>
+<button class="assign" data-toast="تم تعيين الناقل والسائق والشاحنة">تعيين الآن</button></section>
+<section class="card"><div class="head"><div><h2>النشاط المباشر</h2><p>● مباشر</p></div></div><div class="timeline"><div>09:40 — تم إنشاء حجز جديد</div><div>09:42 — تم ترشيح ناقل</div><div>09:44 — تم ترشيح سائق</div><div>09:45 — تم قبول الحجز</div><div>09:45 — انطلقت الشاحنة</div></div></section>
+</div>
+<div class="bottom">
+<section class="card"><div class="head"><h2>الرحلات النشطة اليوم</h2><a class="btn" href="trips.html">عرض جميع الرحلات</a></div><table><tr><th>رقم الرحلة</th><th>من</th><th>إلى</th><th>الحالة</th><th>الإجراء</th></tr><tr><td>TRP-10023</td><td>الرياض</td><td>جدة</td><td>قيد التنفيذ</td><td><button class="track" data-toast="فتح تتبع TRP-10023">تتبع</button></td></tr><tr><td>TRP-10024</td><td>المدينة</td><td>الدمام</td><td>قيد التنفيذ</td><td><button class="track" data-toast="فتح تتبع TRP-10024">تتبع</button></td></tr></table></section>
+<section class="card"><div class="head"><h2>الأسطول المتاح الآن</h2></div><div class="ring"><b>91%</b></div></section>
+</div>
+</section></main></div><div id="toast" class="toast"></div><script src="app.js"></script></body></html>
